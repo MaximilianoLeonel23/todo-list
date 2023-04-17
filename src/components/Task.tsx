@@ -17,14 +17,14 @@ const Task = ({ task, taskList, setTaskList }: Props): JSX.Element => {
   };
 
   // Finalizar tarea
-  const successTask = (taskList: ITask[], taskToSuccess: ITask) => {
+  const successTask = (taskList: ITask[], taskToSuccess: ITask): ITask[] => {
     const taskListWithSuccess = taskList.map((item) => {
       if (item === taskToSuccess) {
         return { ...item, taskSuccess: true };
       }
       return item;
     });
-    setTaskList(taskListWithSuccess);
+    return taskListWithSuccess;
   };
   // Manejador del eliminación
   const handleDelete = (task: ITask): void => {
@@ -34,7 +34,9 @@ const Task = ({ task, taskList, setTaskList }: Props): JSX.Element => {
   };
   // Manejador de finalización
   const handleSuccess = (task: ITask): void => {
-    successTask(taskList, task);
+    const taskListWithSuccess = successTask(taskList, task);
+    setTaskList(taskListWithSuccess);
+    setLocalStorage(taskListWithSuccess);
   };
 
   return (
