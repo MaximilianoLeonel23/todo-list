@@ -10,4 +10,5 @@ export interface ITask {
   taskTitle: string;
   taskDescription: string;
   taskDeadline: IDeadline;
+  taskSuccess: boolean;
 }

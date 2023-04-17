@@ -16,6 +16,7 @@ const App = () => {
       setTaskList(JSON.parse(localTaskList));
     }
   };
+
   useEffect(() => {
     getLocalStorage();
   }, []);
@@ -52,15 +53,15 @@ const App = () => {
       taskTitle: taskTitle,
       taskDescription: taskDescription,
       taskDeadline: taskDeadline,
+      taskSuccess: false,
     };
-
     setTaskList([...taskList, task]);
     setLocalStorage(taskList);
   };
 
   return (
     <div className="container py-5">
-      <div className="row mb-3">
+      <div className="row mb-5">
         <div className="col d-flex align-items-center justify-content-center">
           <h1>Lista de tareas</h1>
         </div>
