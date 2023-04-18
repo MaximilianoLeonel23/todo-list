@@ -11,7 +11,7 @@ interface Props {
 }
 const Task = ({ task, taskList, setTaskList }: Props): JSX.Element => {
   const when = task.taskDeadline;
-  useEffect(() => {}, [taskList]);
+  // useEffect(() => {}, [taskList]);
 
   // Eliminar tarea unitaria
   const deleteTask = (taskList: ITask[], taskToDelete: ITask): ITask[] => {
@@ -65,7 +65,7 @@ const Task = ({ task, taskList, setTaskList }: Props): JSX.Element => {
         </div>
         <div>
           {task.taskSuccess && (
-            <h6 className="text-success mb-0">Finalizado</h6>
+            <h6 className="text-success mb-0">Finalizada</h6>
           )}
         </div>
       </div>
@@ -90,7 +90,7 @@ const Task = ({ task, taskList, setTaskList }: Props): JSX.Element => {
               className="btn btn-success"
               onClick={() => handleSuccess(task)}
             >
-              Terminada
+              Finalizar
             </button>
           )}
         </div>

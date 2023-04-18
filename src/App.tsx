@@ -9,9 +9,6 @@ const App = () => {
   // Lista de tareas
   const [taskList, setTaskList] = useState<ITask[]>([]);
 
-  // Actualizo la lista de tareas a medida que se modifica el array
-  useEffect(() => {}, [taskList]);
-
   // Manejador de fechas y horas
   const getTime = (date: string, hour: string): IDeadline => {
     const newDate = new Date(date);
@@ -43,21 +40,30 @@ const App = () => {
       taskDeadline: taskDeadline,
       taskSuccess: false,
     };
-    setTaskList([...taskList, task]);
-    setLocalStorage(taskList);
+    // Actualizo el estado y guardo en el localstorage
+    setTaskList((prevTaskList) => {
+      const newTaskList = [...prevTaskList, task];
+      setLocalStorage(newTaskList);
+      return newTaskList;
+    });
   };
 
   // Reviso si hay tareas en el local storage
   const getLocalStorage = () => {
-    const localTaskList = localStorage.getItem("taskList");
+    const localTaskList = JSON.parse(localStorage.getItem("taskList") || "[]");
     if (localTaskList) {
-      setTaskList(JSON.parse(localTaskList));
+      setTaskList(localTaskList);
+    } else {
+      setTaskList([]);
     }
   };
 
   useEffect(() => {
     getLocalStorage();
   }, []);
+
+  // Actualizo la lista de tareas a medida que se modifica el array
+  useEffect(() => {}, [taskList]);
 
   return (
     <div className="container py-5">

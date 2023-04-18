@@ -1,5 +1,3 @@
-import add from "../assets/icons/plus-lg.svg";
-
 interface Props {
   getTask: any;
 }
