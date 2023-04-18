@@ -9,18 +9,6 @@ const App = () => {
   // Lista de tareas
   const [taskList, setTaskList] = useState<ITask[]>([]);
 
-  // Reviso si hay tareas en el local storage
-  const getLocalStorage = () => {
-    const localTaskList = localStorage.getItem("taskList");
-    if (localTaskList) {
-      setTaskList(JSON.parse(localTaskList));
-    }
-  };
-
-  useEffect(() => {
-    getLocalStorage();
-  }, []);
-
   // Actualizo la lista de tareas a medida que se modifica el array
   useEffect(() => {}, [taskList]);
 
@@ -59,11 +47,23 @@ const App = () => {
     setLocalStorage(taskList);
   };
 
+  // Reviso si hay tareas en el local storage
+  const getLocalStorage = () => {
+    const localTaskList = localStorage.getItem("taskList");
+    if (localTaskList) {
+      setTaskList(JSON.parse(localTaskList));
+    }
+  };
+
+  useEffect(() => {
+    getLocalStorage();
+  }, []);
+
   return (
     <div className="container py-5">
       <div className="row mb-5">
         <div className="col d-flex align-items-center justify-content-center">
-          <h1>Lista de tareas</h1>
+          <h1 className="fw-bold">Lista de tareas</h1>
         </div>
       </div>
       <div className="row justify-content-center">

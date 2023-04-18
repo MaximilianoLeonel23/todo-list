@@ -1,10 +1,12 @@
+import add from "../assets/icons/plus-lg.svg";
+
 interface Props {
   getTask: any;
 }
 
 const Form = ({ getTask }: Props): JSX.Element => {
   return (
-    <section className="col-12 col-sm-10 col-md-6">
+    <section className="col-12 col-sm-10 col-md-6 py-4 mb-3">
       <form id="form" onSubmit={getTask}>
         <div className="container">
           <div className="row g-3 align-items-center mb-3">

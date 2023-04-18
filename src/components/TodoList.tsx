@@ -1,3 +1,4 @@
+import { setLocalStorage } from "../helpers/localStorage";
 import { ITask } from "../interfaces/Interfaces";
 import Task from "./Task";
 
@@ -10,6 +11,7 @@ const TodoList = ({ taskList, setTaskList }: Props): JSX.Element => {
   // Borra todas las tareas
   const cleanTaskList = (): void => {
     setTaskList([]);
+    setLocalStorage(taskList);
   };
   return (
     <section className="col-12 col-sm-10 col-md-6">

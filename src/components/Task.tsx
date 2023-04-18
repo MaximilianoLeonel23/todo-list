@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { setLocalStorage } from "../helpers/localStorage";
 import { ITask } from "../interfaces/Interfaces";
+import calendarCheck from "../assets/icons/calendar-check.svg";
+import calendar from "../assets/icons/calendar-event.svg";
 
 interface Props {
   task: ITask;
@@ -26,6 +28,7 @@ const Task = ({ task, taskList, setTaskList }: Props): JSX.Element => {
     });
     return taskListWithSuccess;
   };
+
   // Manejador del eliminación
   const handleDelete = (task: ITask): void => {
     const newList = deleteTask(taskList, task);
@@ -49,9 +52,16 @@ const Task = ({ task, taskList, setTaskList }: Props): JSX.Element => {
           task.taskSuccess ? "bg-success-subtle border-success-subtle" : ""
         }  d-flex justify-content-between align-items-center`}
       >
-        <div>
-          {[when.day]} {when.dayNumber} de {when.month}
-          {when.hour ? ", " + when.hour + "hs" : null}
+        <div className="d-flex align-items-center fw-medium gap-3">
+          {task.taskSuccess ? (
+            <img src={calendarCheck} alt="calendario" />
+          ) : (
+            <img src={calendar} alt="calendario" />
+          )}
+          <p className="m-0">
+            {[when.day]} {when.dayNumber} de {when.month}
+            {when.hour ? ", " + when.hour + "hs" : null}
+          </p>
         </div>
         <div>
           {task.taskSuccess && (
@@ -59,17 +69,17 @@ const Task = ({ task, taskList, setTaskList }: Props): JSX.Element => {
           )}
         </div>
       </div>
-      <div className="card-body d-flex justify-content-between align-items-start">
+      <div className="card-body d-flex justify-content-between align-items-start gap-3">
         <div>
-          <h5 className="card-title ">{task.taskTitle}</h5>
+          <h5 className="card-title fw-semibold">{task.taskTitle}</h5>
           {task.taskDescription && (
-            <p className="card-text">{task.taskDescription}</p>
+            <p className="card-text fw-light">{task.taskDescription}</p>
           )}
         </div>
         <div className="d-flex flex-column">
           <button
             type="button"
-            className="btn btn-primary mb-2"
+            className="btn btn-danger mb-2"
             onClick={() => handleDelete(task)}
           >
             Eliminar
