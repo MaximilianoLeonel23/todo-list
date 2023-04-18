@@ -11,8 +11,9 @@ const TodoList = ({ taskList, setTaskList }: Props): JSX.Element => {
   // Borra todas las tareas
   const cleanTaskList = (): void => {
     setTaskList([]);
-    setLocalStorage(taskList);
+    setLocalStorage([]);
   };
+
   return (
     <section className="col-12 col-sm-10 col-md-6">
       {taskList.map((el, i) => {
