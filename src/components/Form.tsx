@@ -1,5 +1,5 @@
 interface Props {
-  getTask: any;
+  getTask: (e: any) => void;
 }
 
 const Form = ({ getTask }: Props): JSX.Element => {
@@ -43,7 +43,7 @@ const Form = ({ getTask }: Props): JSX.Element => {
           <div className="row g-3 align-items-center mb-3">
             <div className="col-auto">
               <label htmlFor="date" className="col-form-label">
-                Tiempo límite
+                Fecha límite
               </label>
             </div>
             <div className="col-auto">
@@ -53,8 +53,16 @@ const Form = ({ getTask }: Props): JSX.Element => {
                 name="date"
                 className="form-control"
                 aria-labelledby="deadlineDateHelpInline"
+                placeholder="dd/mm/aaaa"
                 required
               />
+            </div>
+          </div>
+          <div className="row g-3 align-items-center mb-3">
+            <div className="col-auto">
+              <label htmlFor="hour" className="col-form-label">
+                Hora
+              </label>
             </div>
             <div className="col-auto">
               <input
@@ -67,6 +75,7 @@ const Form = ({ getTask }: Props): JSX.Element => {
             </div>
           </div>
         </div>
+
         <div className="container">
           <div className="row g-3 align-items-center mb-3">
             <button type="submit" className="btn btn-primary">
